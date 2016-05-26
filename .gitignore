@@ -1,0 +1,6 @@
+auto-safe-list
+eshell
+tramp
+*.elc
+*~
+.DS_Store
