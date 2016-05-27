@@ -14,7 +14,12 @@
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
 ;; Tabs nur mit Leerzeichen
-(setq-default indent-tabs-mode nil)))
+(setq-default indent-tabs-mode nil)
+
+;; Kolorierte Shell
+(require 'ansi-color)
+(add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
+(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
 
 ;; Server starten
 (require 'server)
