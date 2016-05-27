@@ -13,6 +13,9 @@
 ;; prüfen
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
+;; Tabs nur mit Leerzeichen
+(setq-default indent-tabs-mode nil)))
+
 ;; Server starten
 (require 'server)
 (server-start)
