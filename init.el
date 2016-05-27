@@ -18,6 +18,5 @@
 
 ;; Server starten
 (require 'server)
-(server-start)
-(server-start)
-
+(unless (server-running-p)
+  (server-start))
