@@ -25,3 +25,26 @@
 (require 'server)
 (unless (server-running-p)
   (server-start))
+
+;; Melpa Packages
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+(package-initialize)
+
+(if (not (package-installed-p 'use-package))
+    (progn
+      (package-refresh-contents)
+      (package-install 'use-package)))
+(require 'use-package)
+
+(use-package markdown-mode
+  :ensure markdown-mode)
+(use-package abyss-theme
+  :ensure abyss-theme)
+(use-package semantic
+  :ensure semantic)
+(use-package auto-complete
+  :ensure auto-complete
+  :bind ("<C-tab>" . auto-complete))
+(ac-config-default)
