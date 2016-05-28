@@ -26,18 +26,22 @@
 (unless (server-running-p)
   (server-start))
 
-;; Melpa Packages
+;; MELPA Packages
+;;  - Package einrichten
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
+;;  - Use-package zum Laden der MELPA-Packages einrichten, so dass nur
+;;    neues geladen wird.
 (if (not (package-installed-p 'use-package))
     (progn
       (package-refresh-contents)
       (package-install 'use-package)))
 (require 'use-package)
 
+;; Die eigentlichen Pakete installieren
 (use-package markdown-mode
   :ensure markdown-mode)
 (use-package abyss-theme
