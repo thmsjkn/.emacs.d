@@ -1,8 +1,3 @@
-; Keine Menüs oder Tools anzeigen, dafür aber eine Uhr
-(menu-bar-mode 0)
-(tool-bar-mode 0)
-(display-time-mode 1)
-
 ;; Splash Screen nicht anzeigen
 (setq inhibit-startup-message t)
 
@@ -41,14 +36,28 @@
       (package-install 'use-package)))
 (require 'use-package)
 
-;; Die eigentlichen Pakete installieren
+;;  - Die eigentlichen Pakete installieren
+(package-install 'abyss-theme)
+(package-install 'zenburn-theme)
+(package-install 'dracula-theme)
 (use-package markdown-mode
   :ensure markdown-mode)
-(use-package abyss-theme
-  :ensure abyss-theme)
 (use-package semantic
   :ensure semantic)
 (use-package auto-complete
   :ensure auto-complete
   :bind ("<C-tab>" . auto-complete))
 (ac-config-default)
+
+;; Funktion für Frames auf grafische Terminals
+(defun init-frame (&optional frame)
+  (if window-system
+      (progn
+        (tool-bar-mode 0)
+        (load-theme 'dracula t))))
+
+;; Keine Menüs oder Toolbar anzeigen, dafür aber eine Uhr
+(menu-bar-mode 0)
+(display-time-mode 1)
+(add-hook 'after-make-frame-functions 'init-frame)
+(add-hook 'after-init-hook 'init-frame)
