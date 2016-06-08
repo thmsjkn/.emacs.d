@@ -30,16 +30,20 @@
 
 ;;  - Use-package zum Laden der MELPA-Packages einrichten, so dass nur
 ;;    neues geladen wird.
-(if (not (package-installed-p 'use-package))
+(defun package-check-and-install (package-name)
+  "Install a package only if the package is not already installed"
+  (interactive)
+  (if (not (package-installed-p package-name))
     (progn
       (package-refresh-contents)
-      (package-install 'use-package)))
+      (package-install package-name))))
+(package-check-and-install 'use-package)
 (require 'use-package)
 
 ;;  - Die eigentlichen Pakete installieren
-(package-install 'abyss-theme)
-(package-install 'zenburn-theme)
-(package-install 'dracula-theme)
+(package-check-and-install 'abyss-theme)
+(package-check-and-install 'zenburn-theme)
+(package-check-and-install 'dracula-theme)
 (use-package markdown-mode
   :ensure markdown-mode)
 (use-package semantic
