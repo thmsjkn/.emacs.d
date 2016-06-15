@@ -1,8 +1,10 @@
 ;; Splash Screen nicht anzeigen
 (setq inhibit-startup-message t)
 
-;; Rechtschreibung in allen Texten wie org- oder txt-Dateien
+;; Rechtschreibung und Zeilenumbrüche in allen Texten wie org- oder txt-Dateien
 (add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
 
 ;; Rechtschreibung von Kommentare und Strings in allen Programmen
 ;; prüfen
