@@ -50,6 +50,9 @@
   :ensure markdown-mode)
 (use-package semantic
   :ensure semantic)
+(use-package magit
+  :ensure magit
+  :bind ("C-x g" . magit-status))
 (use-package auto-complete
   :ensure auto-complete
   :bind ("<C-tab>" . auto-complete))
