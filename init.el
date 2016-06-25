@@ -1,10 +1,10 @@
 ;; Splash Screen nicht anzeigen
 (setq inhibit-startup-message t)
 
-;; Rechtschreibung und Zeilenumbrüche in allen Texten wie org- oder txt-Dateien
+;; Rechtschreibung und Zeilenumbrüche in allen Texten wie org- oder
+;; txt-Dateien
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'auto-fill-mode)
-
 
 ;; Rechtschreibung von Kommentare und Strings in allen Programmen
 ;; prüfen
@@ -16,7 +16,8 @@
 ;; Kolorierte Shell
 (require 'ansi-color)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
-(add-to-list 'comint-output-filter-functions 'ansi-color-process-output)
+(add-to-list 'comint-output-filter-functions
+             'ansi-color-process-output)
 
 ;; Server starten
 (require 'server)
@@ -63,10 +64,13 @@
   (if window-system
       (progn
         (tool-bar-mode 0)
-        (load-theme 'dracula t))))
+        (scroll-bar-mode 0)
+        (load-theme 'zenburn t))))
 
-;; Keine Menüs oder Toolbar anzeigen, dafür aber eine Uhr
+;; Keine Menüs oder Toolbar etc. anzeigen, dafür aber eine Uhr
 (menu-bar-mode 0)
+(setq display-time-24hr-format t)
 (display-time-mode 1)
+(size-indication-mode 1)
 (add-hook 'after-make-frame-functions 'init-frame)
 (add-hook 'after-init-hook 'init-frame)
