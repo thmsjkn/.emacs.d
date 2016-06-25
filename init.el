@@ -46,6 +46,7 @@
 ;;  - Die eigentlichen Pakete installieren
 (package-check-and-install 'abyss-theme)
 (package-check-and-install 'zenburn-theme)
+(package-check-and-install 'anti-zenburn-theme)
 (package-check-and-install 'dracula-theme)
 (use-package markdown-mode
   :ensure markdown-mode)
@@ -65,7 +66,7 @@
       (progn
         (tool-bar-mode 0)
         (scroll-bar-mode 0)
-        (load-theme 'zenburn t))))
+        (load-theme 'anti-zenburn t))))
 
 ;; Keine Menüs oder Toolbar etc. anzeigen, dafür aber eine Uhr
 (menu-bar-mode 0)
@@ -74,3 +75,11 @@
 (size-indication-mode 1)
 (add-hook 'after-make-frame-functions 'init-frame)
 (add-hook 'after-init-hook 'init-frame)
+
+;; Lade lokale Einstellungen, etwas wie
+;;   (setq user-full-name "Dein Name")
+;;   (setq user-mail-address "info@example.com")
+;;   (setq send-mail-function 'sendmail-send-it)
+(setq init-site-file "~/.emacs.d/site.el")
+(if (file-exists-p init-site-file)
+    (load-file init-site-file))
