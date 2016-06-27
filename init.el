@@ -60,26 +60,32 @@
   :bind ("<C-tab>" . auto-complete))
 (ac-config-default)
 
-;; Funktion für Frames auf grafische Terminals
+;; Setup of individual graphical frames. No toolbar and no
+;; scrollbars. But a nice theme.
 (defun init-frame (&optional frame)
   (if window-system
       (progn
         (tool-bar-mode 0)
         (scroll-bar-mode 0)
         (load-theme 'anti-zenburn t))))
-
-;; Keine Menüs oder Toolbar etc. anzeigen, dafür aber eine Uhr
-(menu-bar-mode 0)
-(setq display-time-24hr-format t)
-(display-time-mode 1)
-(size-indication-mode 1)
 (add-hook 'after-make-frame-functions 'init-frame)
 (add-hook 'after-init-hook 'init-frame)
 
-;; Lade lokale Einstellungen, etwas wie
-;;   (setq user-full-name "Dein Name")
-;;   (setq user-mail-address "info@example.com")
-;;   (setq send-mail-function 'sendmail-send-it)
+;; And no menu-bar. Not even in text mode.
+(menu-bar-mode 0)
+
+;; But a clock and a file size indication.
+(setq display-time-24hr-format t)
+(display-time-mode 1)
+(size-indication-mode 1)
+
+;; Local settings, like passwords, usernames and that like can go in
+;; ~/.emacs.d/init.el:
+;;
+;;    (setq user-full-name "Dein Name")
+;;    (setq user-mail-address "info@example.com")
+;;    (setq send-mail-function 'sendmail-send-it)
+;;
 (setq init-site-file "~/.emacs.d/site.el")
 (if (file-exists-p init-site-file)
     (load-file init-site-file))
