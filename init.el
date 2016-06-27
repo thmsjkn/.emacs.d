@@ -1,38 +1,37 @@
-;; Splash Screen nicht anzeigen
+;; -*- ispell-local-dictionary: "en_US" -*-
+;; Do not show splash screen.
 (setq inhibit-startup-message t)
 
-;; Rechtschreibung und Zeilenumbrüche in allen Texten wie org- oder
-;; txt-Dateien
+;; Spell check and out fill in text modes.
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'auto-fill-mode)
 
-;; Rechtschreibung von Kommentare und Strings in allen Programmen
-;; prüfen
+;; Special spell check mode for programs.
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 
-;; Tabs nur mit Leerzeichen
+;; Spaces instead of tabs, as tabs are always interpreted differently.
 (setq-default indent-tabs-mode nil)
 
-;; Kolorierte Shell
+;; Colors in shells. If someone knows how to handle all the other
+;; fancy control characters, please let me know.
 (require 'ansi-color)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
 (add-to-list 'comint-output-filter-functions
              'ansi-color-process-output)
 
-;; Server starten
+;; Start emacs server.
 (require 'server)
 (unless (server-running-p)
   (server-start))
 
-;; MELPA Packages
-;;  - Package einrichten
+;; MELPA packages:
+;;  - package configuration
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 (package-initialize)
 
-;;  - Use-package zum Laden der MELPA-Packages einrichten, so dass nur
-;;    neues geladen wird.
+;;  - load and install new
 (defun package-check-and-install (package-name)
   "Install a package only if the package is not already installed"
   (interactive)
@@ -43,7 +42,7 @@
 (package-check-and-install 'use-package)
 (require 'use-package)
 
-;;  - Die eigentlichen Pakete installieren
+;;  - do load the package
 (package-check-and-install 'abyss-theme)
 (package-check-and-install 'zenburn-theme)
 (package-check-and-install 'anti-zenburn-theme)
