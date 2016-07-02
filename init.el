@@ -59,7 +59,7 @@
   :bind ("<C-tab>" . auto-complete))
 (ac-config-default)
 
-;; Load some bleeding edge packages
+;; Load some local packages
 (defun add-to-load-path-eventually (path &optional append symbol)
   (if (file-exists-p path)
       (progn
@@ -68,8 +68,8 @@
             (require symbol)))))
 
 (let ((add-this-to-load-path
-       '("~/Workspace/org-8.3.4/lisp" nil org
-         "~/Workspace/org-8.3.4/contrib/lisp" t nil
+       '("~/Workspace/org-mode/lisp" nil org
+         "~/Workspace/org-mode/contrib/lisp" t nil
          "~/Workspace/org-reveal" nil ox-reveal)))
   (while
       (progn
