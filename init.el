@@ -59,6 +59,31 @@
   :bind ("<C-tab>" . auto-complete))
 (ac-config-default)
 
+;; Load some bleeding edge packages
+(defun add-to-load-path-eventually (path &optional append symbol)
+  (if (file-exists-p path)
+      (progn
+        (add-to-list 'load-path path append)
+        (if (and symbol (symbolp symbol))
+            (require symbol)))))
+
+(let ((add-this-to-load-path
+       '("~/Workspace/org-8.3.4/lisp" nil org
+         "~/Workspace/org-8.3.4/contrib/lisp" t nil
+         "~/Workspace/org-reveal" nil ox-reveal)))
+  (while
+      (progn
+        (add-to-load-path-eventually (pop add-this-to-load-path)
+                                     (pop add-this-to-load-path)
+                                     (pop add-this-to-load-path))
+        add-this-to-load-path)))
+
+;; Path to reveal.js to use by ox-reveal
+(let ((reveal-js-path (concat (getenv "HOME") "/Workspace/reveal.js")))
+  (if (file-exists-p reveal-js-path)
+      (setq org-reveal-root (concat "file://" reveal-js-path))))
+
+
 ;; Setup of individual graphical frames. No toolbar and no
 ;; scrollbars. But a nice theme.
 (defun init-frame (&optional frame)
@@ -66,7 +91,7 @@
       (progn
         (tool-bar-mode 0)
         (scroll-bar-mode 0)
-        (load-theme 'anti-zenburn t))))
+        (load-theme 'leuven t))))
 (add-hook 'after-make-frame-functions 'init-frame)
 (add-hook 'after-init-hook 'init-frame)
 
