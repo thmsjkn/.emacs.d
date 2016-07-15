@@ -2,13 +2,6 @@
 ;; Do not show splash screen.
 (setq inhibit-startup-message t)
 
-;; Spell check and out fill in text modes.
-(add-hook 'text-mode-hook 'flyspell-mode)
-(add-hook 'text-mode-hook 'auto-fill-mode)
-
-;; Special spell check mode for programs.
-(add-hook 'prog-mode-hook 'flyspell-prog-mode)
-
 ;; Spaces instead of tabs, as tabs are always interpreted differently.
 (setq-default indent-tabs-mode nil)
 
@@ -47,6 +40,7 @@
 (package-check-and-install 'zenburn-theme)
 (package-check-and-install 'anti-zenburn-theme)
 (package-check-and-install 'dracula-theme)
+(package-check-and-install 'hl-anything)
 (use-package markdown-mode
   :ensure markdown-mode)
 (use-package semantic
@@ -58,6 +52,15 @@
   :ensure auto-complete
   :bind ("<C-tab>" . auto-complete))
 (ac-config-default)
+
+;; Spell check and out fill in text modes.
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'text-mode-hook 'auto-fill-mode)
+
+;; Special spell check mode for programs.
+(add-hook 'prog-mode-hook 'flyspell-prog-mode)
+(add-hook 'prog-mode-hook 'hl-line-mode)
+(add-hook 'prog-mode-hook 'hl-paren-mode)
 
 ;; Load some local packages
 (defun add-to-load-path-eventually (path &optional append symbol)
