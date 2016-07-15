@@ -41,7 +41,7 @@
 (package-check-and-install 'anti-zenburn-theme)
 (package-check-and-install 'dracula-theme)
 (package-check-and-install 'hl-anything)
-(package-check-and-install 'highlight-symbol-mode)
+(package-check-and-install 'highlight-symbol)
 
 (use-package markdown-mode
   :ensure markdown-mode)
@@ -58,11 +58,13 @@
 ;; Spell check and out fill in text modes.
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'auto-fill-mode)
+(add-hook 'text-mode-hook 'hl-line-mode)
 
 ;; Special spell check mode for programs.
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
 (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'hl-paren-mode)
+(add-hook 'prog-mode-hook 'highlight-symbol-mode)
 
 ;; Load some local packages
 (defun add-to-load-path-eventually (path &optional append symbol)
@@ -108,10 +110,11 @@
 (display-time-mode 1)
 (size-indication-mode 1)
 
-;; Mac key bindings
+;; Mac key bindings and spell checker
 (if (string-equal system-type "darwin")
-    (setq ns-command-modifier 'meta
-          ns-option-modifier 'control))
+    (progn
+      (setq ns-command-modifier 'meta
+            ns-option-modifier 'control)))
 
 ;; Local settings, like passwords, usernames and that like can go in
 ;; ~/.emacs.d/init.el:
