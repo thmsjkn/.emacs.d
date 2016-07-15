@@ -41,6 +41,8 @@
 (package-check-and-install 'anti-zenburn-theme)
 (package-check-and-install 'dracula-theme)
 (package-check-and-install 'hl-anything)
+(package-check-and-install 'highlight-symbol-mode)
+
 (use-package markdown-mode
   :ensure markdown-mode)
 (use-package semantic
