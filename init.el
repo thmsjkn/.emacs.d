@@ -103,6 +103,11 @@
 (display-time-mode 1)
 (size-indication-mode 1)
 
+;; Mac key bindings
+(if (string-equal system-type "darwin")
+    (setq ns-command-modifier 'meta
+          ns-option-modifier 'control))
+
 ;; Local settings, like passwords, usernames and that like can go in
 ;; ~/.emacs.d/init.el:
 ;;
