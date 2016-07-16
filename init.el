@@ -1,11 +1,11 @@
-;; -*- ispell-local-dictionary: "en_US" -*-
-;; Do not show splash screen.
+;; -*- ispell-local-dictionary: "en_us" -*-
+;; do not show splash screen.
 (setq inhibit-startup-message t)
 
-;; Spaces instead of tabs, as tabs are always interpreted differently.
+;; spaces instead of tabs, as tabs are always interpreted differently.
 (setq-default indent-tabs-mode nil)
 
-;; Colors in shells. If someone knows how to handle all the other
+;; colors in shells. if someone knows how to handle all the other
 ;; fancy control characters, please let me know.
 (require 'ansi-color)
 (add-hook 'shell-mode-hook 'ansi-color-for-comint-mode-on)
@@ -114,7 +114,10 @@
 (if (string-equal system-type "darwin")
     (progn
       (setq ns-command-modifier 'meta
-            ns-option-modifier 'control)))
+            ns-right-command-modifier 'control
+            ns-option-modifier nil
+            exec-path (append exec-path '("/usr/local/bin"))
+            ispell-dictionary "de_DE")))
 
 ;; Local settings, like passwords, usernames and that like can go in
 ;; ~/.emacs.d/init.el:
