@@ -58,11 +58,11 @@
 ;; Spell check and out fill in text modes.
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'auto-fill-mode)
-(add-hook 'text-mode-hook 'hl-line-mode)
+; (add-hook 'text-mode-hook 'hl-line-mode)
 
 ;; Special spell check mode for programs.
 (add-hook 'prog-mode-hook 'flyspell-prog-mode)
-(add-hook 'prog-mode-hook 'hl-line-mode)
+; (add-hook 'prog-mode-hook 'hl-line-mode)
 (add-hook 'prog-mode-hook 'hl-paren-mode)
 (add-hook 'prog-mode-hook 'highlight-symbol-mode)
 
@@ -101,6 +101,7 @@
         (load-theme 'leuven t))))
 (add-hook 'after-make-frame-functions 'init-frame)
 (add-hook 'after-init-hook 'init-frame)
+(set-default-font "Inconsolata")
 
 ;; And no menu-bar. Not even in text mode.
 (menu-bar-mode 0)
@@ -109,6 +110,10 @@
 (setq display-time-24hr-format t)
 (display-time-mode 1)
 (size-indication-mode 1)
+
+;; use aspell
+(setq ispell-program-name "aspell"
+      ispell-dictionary   "de_DE")
 
 ;; Mac key bindings and spell checker
 (if (string-equal system-type "darwin")
